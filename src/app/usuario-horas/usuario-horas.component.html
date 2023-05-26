@@ -1,0 +1,82 @@
+<div class="row centrado">
+  <div class="col container shadow p-3 mb-5 bg-white rounded m-5 h-50">
+    <div class="container mx-auto text-center">
+      <p>
+        {{ diaSemana }}
+        <select name="dias" [(ngModel)]="dia" (click)="setDiaTabla()">
+          <option *ngFor="let dia of dias" [selected]="dia">{{ dia }}</option>
+        </select>
+        de
+        <select name="meses" [(ngModel)]="mes" (click)="setMesTabla(mes)">
+          <option *ngFor="let mes of mesesES" [selected]="mes">
+            {{ mes }}
+          </option>
+        </select>
+        <input
+          class="m-2 p-0 text-center"
+          type="number"
+          placeholder="Año"
+          [(ngModel)]="anyo"
+          (input)="setAnyo(anyo)"
+        />
+      </p>
+      <div *ngIf="mostrarBoton" (click)="volver()" class="row width">
+        <button class="btn btn-primary" (click)="setSalida()">Volver</button>
+      </div>
+      <div class="row">
+        <div class="col mb-3">
+          <button class="btn btn-primary" (click)="setEntrada()">
+            Entrada
+          </button>
+        </div>
+        <div class="col mb-3">
+          <button class="btn btn-primary" (click)="setAlmuerzoEntrada()">
+            Almuerzo Entrada
+          </button>
+        </div>
+        <div class="col mb-3">
+          <button class="btn btn-primary" (click)="setAlmuerzoSalida()">
+            Almuerzo Salida
+          </button>
+        </div>
+        <div class="col mb-3">
+          <button class="btn btn-primary" (click)="setComidaEntrada()">
+            Comida Entrada
+          </button>
+        </div>
+        <div class="col mb-3">
+          <button class="btn btn-primary" (click)="setComidaSalida()">
+            Comida Salida
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" (click)="setSalida()">Salida</button>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <input type="time" disabled="true" [(ngModel)]="horaEntrada" />
+        </div>
+        <div class="col">
+          <input
+            type="time"
+            disabled="true"
+            [(ngModel)]="horaAlmuerzoEntrada"
+          />
+        </div>
+        <div class="col">
+          <input type="time" disabled="true" [(ngModel)]="horaAlmuerzoSalida" />
+        </div>
+        <div class="col">
+          <input type="time" disabled="true" [(ngModel)]="horaComidaEntrada" />
+        </div>
+        <div class="col">
+          <input type="time" disabled="true" [(ngModel)]="horaComidaSalida" />
+        </div>
+        <div class="col">
+          <input type="time" disabled="true" [(ngModel)]="horaSalida" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,268 @@
+<!-- <button (click)="setHoras()">Todas las entradas a las 9:00</button> -->
+
+<div class="container-fluid mt-5 d-flex justify-content-around centrado">
+  <div class="row">
+    <div [id]="heigth" class="bg-white rounded h-25 text-center p-2 col-2">
+      <div class="row">
+        <div class="col">
+          <h2>Empresas</h2>
+          <select
+            name="empresas"
+            class="form-select"
+            (click)="setEmpresa(empresa)"
+            [(ngModel)]="empresa"
+          >
+            <option *ngFor="let empresa of empresas" [selected]="empresa">
+              {{ empresa }}
+            </option>
+          </select>
+          <br />
+          <h2>Fecha</h2>
+          <select
+            class="form-select"
+            name="meses"
+            (click)="setMesTabla(mes)"
+            [(ngModel)]="mes"
+          >
+            <option *ngFor="let mes of mesesES; index as i" [selected]="mes">
+              {{ mes }}
+            </option>
+          </select>
+          <input
+            type="number"
+            class="form-control mt-2"
+            placeholder="Año"
+            [(ngModel)]="anyo"
+            (input)="setAnyo(anyo)"
+          />
+          <br />
+
+          <h2>Empleados</h2>
+          <select
+            class="form-select"
+            name="empleado"
+            (click)="setID(empleado)"
+            [(ngModel)]="empleado"
+          >
+            <option *ngFor="let empleado of empleados" [selected]="empleado">
+              {{ empleado }}
+            </option>
+          </select>
+          <br />
+          <br />
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded ms-5 text-center p-4 col-6 mb-5">
+      <div class="row col width">
+        <div class="col"></div>
+        <h5 class="col text-center">Entrada</h5>
+        <h5 class="col text-center">Almuerzo Entrada</h5>
+        <h5 class="col text-center">Almuerzo Salida</h5>
+        <h5 class="col text-center">Comida Entrada</h5>
+        <h5 class="col text-center">Comida Salida</h5>
+        <h5 class="col-2 text-center">Salida</h5>
+      </div>
+
+      <div class="" *ngFor="let dias of dias; index as i" [id]="'fila-' + i">
+        <div class="input-group mb-2">
+          <label
+            for=""
+            class="col"
+            style="text-align: center"
+            *ngIf="display[i]"
+            >{{ i + 1 }}</label
+          >
+
+          <input
+            type="time"
+            name="horaEntrada"
+            (input)="guardar(i)"
+            [(ngModel)]="horaEntrada[i]"
+            autocomplete="off"
+            [disabled]="disabledInputs[i][0]"
+            *ngIf="display[i]"
+            class="col form-control"
+          />
+
+          <input
+            type="time"
+            name="horaAlmuerzoEntrada"
+            (input)="guardar(i)"
+            [(ngModel)]="horaAlmuerzoEntrada[i]"
+            id=""
+            class="col form-control"
+            [disabled]="disabledInputs[i][2]"
+            *ngIf="display[i]"
+          />
+
+          <input
+            type="time"
+            name="horaAlmuerzoSalida"
+            (input)="guardar(i)"
+            [(ngModel)]="horaAlmuerzoSalida[i]"
+            id=""
+            class="col form-control"
+            [disabled]="disabledInputs[i][3]"
+            *ngIf="display[i]"
+          />
+
+          <input
+            type="time"
+            name="horaComidaEntrada"
+            (input)="guardar(i)"
+            [(ngModel)]="horaComidaEntrada[i]"
+            id=""
+            class="col form-control"
+            [disabled]="disabledInputs[i][4]"
+            *ngIf="display[i]"
+          />
+
+          <input
+            type="time"
+            name="horaComidaSalida"
+            (input)="guardar(i)"
+            [(ngModel)]="horaComidaSalida[i]"
+            id=""
+            class="col form-control"
+            [disabled]="disabledInputs[i][5]"
+            *ngIf="display[i]"
+          />
+
+          <input
+            type="time"
+            name="horaSalida"
+            (input)="guardar(i)"
+            [(ngModel)]="horaSalida[i]"
+            [disabled]="disabledInputs[i][1]"
+            *ngIf="display[i]"
+            class="col form-control"
+          />
+
+          <button
+            (click)="festivo(i)"
+            class="col btn btn-dark"
+            *ngIf="display[i]"
+          >
+            Festivo
+          </button>
+        </div>
+      </div>
+    </div>
+    <div [id]="largo" class="bg-white rounded largo largoFestivos p-2 col-2 ms-5">
+      <h2 class="text-center">Funciones</h2>
+
+      <button (click)="fichar()" class="col btn btn-primary mt-3 mb-2">
+        Fichar
+      </button>
+
+      <button (click)="ocultarMostrar()" class="col btn btn-primary mb-2">
+        Mostrar/Ocultar Festivos
+      </button>
+      <br />
+      <button (click)="pdf()" class="col btn btn-primary mb-5">Descargar PDF</button>
+
+      <h2 class="text-center">Registrar Empleado</h2>
+      <form id="login-form" action="" #form="ngForm">
+        <input
+          id="usuario"
+          type="text"
+          name="DNI"
+          class="form-control mb-2 mt-3"
+          [(ngModel)]="dni"
+          [class]="dniValido"
+          placeholder="DNI"
+        />
+        <select
+          class="form-select mb-2"
+          name="rol"
+          [(ngModel)]="rolSelect"
+        >
+          <option *ngFor="let rol of roles">{{ rol }}</option>
+        </select>
+        <select
+          class="form-select mb-2"
+          name="empresas"
+          [(ngModel)]="empresaSelect"
+        >
+          <option
+            *ngFor="let empresaSelect of empresas"
+            [selected]="empresaSelect"
+          >
+            {{ empresaSelect }}
+          </option>
+        </select>
+        <input
+          type="submit"
+          class="btn btn-secondary"
+          id="login"
+          value="Registrar"
+          (click)="validarDNI(dni, empresaSelect)"
+        />
+      </form>
+    </div>
+  
+  </div>
+</div>
+
+<div id="htmlData" class="tabla">
+  <h1>Registro Jornada</h1>
+  <p>Razón Social: {{ empresa }}</p>
+  <p>CIF: {{ cif }}</p>
+  <p>
+    DATOS DEL TRABAJADOR
+    <br />
+    -----------------------------------------------------------------------------------------------------------------------
+    <br />
+    Nombre y apellidos: {{ empleadoNombre }} {{ empleadoApellidos }}
+    <br />
+    DNI:{{ empleadoDNI }}
+    <br />
+    -----------------------------------------------------------------------------------------------------------------------
+    <br />
+    Mes: {{ mes }}
+  </p>
+  <table>
+    <tr>
+      <th>Dia</th>
+      <th>Entrada</th>
+      <th>Almuerzo Entrada</th>
+      <th>Almuerzo Salida</th>
+      <th>Comida Entrada</th>
+      <th>Comida Salida</th>
+      <th>Salida</th>
+    </tr>
+    <tr *ngFor="let dias of dias; index as i" [id]="'fila-' + i">
+      <td *ngIf="display[i]">{{ i + 1 }}</td>
+
+      <td name="horaEntradaTabla" class="col fila-tabla" *ngIf="display[i]">
+        {{ horaEntrada[i] }}
+      </td>
+
+      <td name="horaAlmuerzoEntrada" class="col fila-tabla" *ngIf="display[i]">
+        {{ horaAlmuerzoEntrada[i] }}
+      </td>
+
+      <td name="horaAlmuerzoSalida" class="col fila-tabla" *ngIf="display[i]">
+        {{ horaAlmuerzoSalida[i] }}
+      </td>
+
+      <td name="horaComidaEntrada" class="col fila-tabla" *ngIf="display[i]">
+        {{ horaComidaEntrada[i] }}
+      </td>
+
+      <td name="horaComidaSalida" class="col fila-tabla" *ngIf="display[i]">
+        {{ horaComidaSalida[i] }}
+      </td>
+
+      <td name="horaSalida" class="col fila-tabla" *ngIf="display[i]">
+        {{ horaSalida[i] }}
+      </td>
+    </tr>
+  </table>
+  <p>
+    Firma Trabajador:
+    <label style="float: right">Firma y Sello de la empresa:</label>
+  </p>
+</div>

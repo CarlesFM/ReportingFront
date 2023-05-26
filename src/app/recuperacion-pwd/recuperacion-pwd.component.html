@@ -1,0 +1,19 @@
+<div id="login-form-wrap">
+  <form id="login-form" action="" #form="ngForm">
+    <h2>Recuperar Contraseña</h2>
+    <input
+      id="correo"
+      type="text"
+      name="correo"
+      [(ngModel)]="correo"
+      placeholder="Correo"
+    />
+    <input
+      type="submit"
+      class="boton"
+      id="login"
+      value="Recuperar Contraseña"
+      (click)="recuperar(correo)"
+    />
+  </form>
+</div>

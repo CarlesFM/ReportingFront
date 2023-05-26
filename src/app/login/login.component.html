@@ -1,0 +1,40 @@
+<div id="login-form-wrap">
+  <h2>Login</h2>
+  <form id="login-form" (ngSubmit)="login(form)" #form="ngForm">
+    <p>
+      <input
+        type="text"
+        id="usuario"
+        name="username"
+        placeholder="Correo"
+        required
+        ngModel
+      />
+    </p>
+    <p>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Contraseña"
+        required
+        ngModel
+      />
+    </p>
+    <p>
+      <input type="submit" class="boton" id="login" value="Conectarse" />
+      <input
+        (click)="registro()"
+        class="boton"
+        id="registro"
+        value="Registrarse"
+      />
+      <input
+        (click)="recuperarPwd()"
+        class="boton"
+        id="registro"
+        value="Recuperar Contraseña"
+      />
+    </p>
+  </form>
+</div>
