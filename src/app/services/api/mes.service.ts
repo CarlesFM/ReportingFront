@@ -33,7 +33,7 @@ export class MesService {
   }
 
   setMesFecha(fecha: String, ID: number | null) {
-    console.log("mes creado")
+    console.log('mes creado');
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
@@ -56,17 +56,15 @@ export class MesService {
 
     this.http
       .get<Mes>(environment.urlApi + 'api/mes/empleado/' + ID, { headers })
-      .subscribe(
-        (data) => {
-          // console.log(data)
-          let meses: Array<Mes> = [];
-          data['forEach']((element) => {
-            let me: Mes = Mes.convertFrontObject(element);
-            meses.push(me);
-          });
-          this.mes.next(meses);
-        }
-      );
+      .subscribe((data) => {
+        // console.log(data)
+        let meses: Array<Mes> = [];
+        data['forEach']((element) => {
+          let me: Mes = Mes.convertFrontObject(element);
+          meses.push(me);
+        });
+        this.mes.next(meses);
+      });
   }
   getErrorMes() {
     return this.mesError;

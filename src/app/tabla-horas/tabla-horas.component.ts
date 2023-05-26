@@ -36,9 +36,6 @@ import { Empresa } from '../objects/Empresa';
 import { FestivoService } from '../services/api/festivo.service';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
-
-
-
 registerLocaleData(localeEs, 'es-ES');
 
 @Component({
@@ -94,7 +91,7 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
   rolSelect: string = 'Usuario';
   datosEmpleados: Array<Empleado> = [];
 
-  dniValido:string="true";
+  dniValido: string = 'true';
 
   horasEntrada: any[] = [];
   mesExiste: boolean = false;
@@ -134,11 +131,11 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
 
   empresas: Array<string> = [];
   empresa: string = '';
-  empresaSelect: string='';
+  empresaSelect: string = '';
   cif: string = '';
 
-  heigth:string='';
-  largo:string='largo'
+  heigth: string = '';
+  largo: string = 'largo';
 
   constructor(
     @Inject(LOCALE_ID) private localeEs: string,
@@ -148,7 +145,7 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
     private empleadoSE: EmpleadoService,
     private empresasSE: EmpresaService,
     private festivoSE: FestivoService,
-    private router: Router,
+    private router: Router
   ) {
     super();
   }
@@ -371,26 +368,25 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
 
         this._unsubInd5.next(' ');
       });
-    
+
     this.empleadoSE.getEmpleadoAll();
-    this.empleadoSE.getEmpleadosResult().pipe(takeUntil(this._unsubInd5)).subscribe((data)=>{
-      this.empleados = [];
-      if (data == null) {
-        return;
-      }
-      for (let i = 0; i < data.length; i++) {
-          if(data[i].empresas.nombre==empresa){
-            this.datosEmpleados.push(data[i])
-            this.empleados.push(data[i].nombre+" "+data[i].apellidos)
+    this.empleadoSE
+      .getEmpleadosResult()
+      .pipe(takeUntil(this._unsubInd5))
+      .subscribe((data) => {
+        this.empleados = [];
+        if (data == null) {
+          return;
+        }
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].empresas.nombre == empresa) {
+            this.datosEmpleados.push(data[i]);
+            this.empleados.push(data[i].nombre + ' ' + data[i].apellidos);
           }
-      }
-      this.empleado= this.empleados[0]
-      this.setID(this.empleado)
-    })
-
-
-
-
+        }
+        this.empleado = this.empleados[0];
+        this.setID(this.empleado);
+      });
   }
 
   guardar(posicionRegistro) {
@@ -416,12 +412,30 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
 
           for (let i = 0; i < value.length; i++) {
             if (value[i].dia == posicionRegistro + 1 && mesID == value[i].mes) {
-              let entrada = this.horaEntrada[posicionRegistro] == undefined ? null : this.horaEntrada[posicionRegistro];
-              let salida = this.horaSalida[posicionRegistro] == undefined ? null : this.horaSalida[posicionRegistro];
-              let almuerzoEntrada = this.horaAlmuerzoEntrada[posicionRegistro] == undefined ? null : this.horaAlmuerzoEntrada[posicionRegistro];
-              let almuerzoSalida = this.horaAlmuerzoSalida[posicionRegistro] == undefined ? null : this.horaAlmuerzoSalida[posicionRegistro];
-              let comidaEntrada = this.horaComidaEntrada[posicionRegistro] == undefined ? null : this.horaComidaEntrada[posicionRegistro];
-              let comidaSalida = this.horaComidaSalida[posicionRegistro] == undefined ? null : this.horaComidaSalida[posicionRegistro];
+              let entrada =
+                this.horaEntrada[posicionRegistro] == undefined
+                  ? null
+                  : this.horaEntrada[posicionRegistro];
+              let salida =
+                this.horaSalida[posicionRegistro] == undefined
+                  ? null
+                  : this.horaSalida[posicionRegistro];
+              let almuerzoEntrada =
+                this.horaAlmuerzoEntrada[posicionRegistro] == undefined
+                  ? null
+                  : this.horaAlmuerzoEntrada[posicionRegistro];
+              let almuerzoSalida =
+                this.horaAlmuerzoSalida[posicionRegistro] == undefined
+                  ? null
+                  : this.horaAlmuerzoSalida[posicionRegistro];
+              let comidaEntrada =
+                this.horaComidaEntrada[posicionRegistro] == undefined
+                  ? null
+                  : this.horaComidaEntrada[posicionRegistro];
+              let comidaSalida =
+                this.horaComidaSalida[posicionRegistro] == undefined
+                  ? null
+                  : this.horaComidaSalida[posicionRegistro];
               let dia = posicionRegistro + 1;
 
               registroExiste = true;
@@ -440,12 +454,30 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
           }
           if (!registroExiste) {
             let mes = mesID;
-            let entrada = this.horaEntrada[posicionRegistro] == undefined ? null : this.horaEntrada[posicionRegistro];
-            let salida = this.horaSalida[posicionRegistro] == undefined ? null : this.horaSalida[posicionRegistro];
-            let almuerzoEntrada = this.horaAlmuerzoEntrada[posicionRegistro] == undefined ? null : this.horaAlmuerzoEntrada[posicionRegistro];
-            let almuerzoSalida = this.horaAlmuerzoSalida[posicionRegistro] == undefined ? null : this.horaAlmuerzoSalida[posicionRegistro];
-            let comidaEntrada = this.horaComidaEntrada[posicionRegistro] == undefined ? null : this.horaComidaEntrada[posicionRegistro];
-            let comidaSalida = this.horaComidaSalida[posicionRegistro] == undefined ? null : this.horaComidaSalida[posicionRegistro];
+            let entrada =
+              this.horaEntrada[posicionRegistro] == undefined
+                ? null
+                : this.horaEntrada[posicionRegistro];
+            let salida =
+              this.horaSalida[posicionRegistro] == undefined
+                ? null
+                : this.horaSalida[posicionRegistro];
+            let almuerzoEntrada =
+              this.horaAlmuerzoEntrada[posicionRegistro] == undefined
+                ? null
+                : this.horaAlmuerzoEntrada[posicionRegistro];
+            let almuerzoSalida =
+              this.horaAlmuerzoSalida[posicionRegistro] == undefined
+                ? null
+                : this.horaAlmuerzoSalida[posicionRegistro];
+            let comidaEntrada =
+              this.horaComidaEntrada[posicionRegistro] == undefined
+                ? null
+                : this.horaComidaEntrada[posicionRegistro];
+            let comidaSalida =
+              this.horaComidaSalida[posicionRegistro] == undefined
+                ? null
+                : this.horaComidaSalida[posicionRegistro];
             let dia = posicionRegistro + 1;
 
             this.registroSE.setRegistros(
@@ -468,13 +500,12 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
     for (let i = 0; i < this.dias.length; i++) {
       if (this.display[i] == false) {
         this.display[i] = true;
-        this.largo="largo"
-        this.heigth=""
-
+        this.largo = 'largo';
+        this.heigth = '';
       } else if (this.disabledInputs[i][0]) {
         this.display[i] = false;
-        this.largo="largoFestivo"
-        this.heigth="height"
+        this.largo = 'largoFestivo';
+        this.heigth = 'height';
       }
     }
   }
@@ -482,12 +513,23 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
   imprimirRegistros(id) {
     let mesEmpleado;
     let mesBuscar: any = this.mesesES.indexOf(this.mes) + 1;
-    mesBuscar = String(mesBuscar).length < 2 ? String('0' + mesBuscar): String(mesBuscar);
+    mesBuscar =
+      String(mesBuscar).length < 2
+        ? String('0' + mesBuscar)
+        : String(mesBuscar);
     let mesRegistros;
     let anyoEmpleado;
-    let entrada, salida, almuerzoEntrada, almuerzoSalida, comidaEntrada, comidaSalida;
+    let entrada,
+      salida,
+      almuerzoEntrada,
+      almuerzoSalida,
+      comidaEntrada,
+      comidaSalida;
     this.mesSE.getAllMes(id);
-    this.mesSE.getResultMes().pipe(takeUntil(this._unsub)).subscribe((value) => {
+    this.mesSE
+      .getResultMes()
+      .pipe(takeUntil(this._unsub))
+      .subscribe((value) => {
         if (value == null) {
           return;
         }
@@ -503,7 +545,9 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
           }
         }
         this.registroSE.getRegistrosEmpleado(id);
-        this.registroSE.getRegistroEmpleadoResult().pipe(takeUntil(this._unsubInd))
+        this.registroSE
+          .getRegistroEmpleadoResult()
+          .pipe(takeUntil(this._unsubInd))
           .subscribe((data) => {
             if (data == null) {
               return;
@@ -594,50 +638,52 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
       alert('Inserta un DNI');
     } else {
       this.empresasSE.getAllEmpresas();
-      this.empresasSE.getEmpresasResult().pipe(takeUntil(this._unsubInd5)).subscribe((data)=>{
-        if (data == null) {
-          return;
-        }
-        console.log(empresaSelect)
-        for (let i = 0; i < data.length; i++) {
-          console.log(data[i].nombre)
-          if(data[i].nombre==empresaSelect){
-            empresaID=data[i].id
+      this.empresasSE
+        .getEmpresasResult()
+        .pipe(takeUntil(this._unsubInd5))
+        .subscribe((data) => {
+          if (data == null) {
+            return;
           }
-        }
-        console.log(empresaID)
-        this.empleadoSE.createEmpleado(dni, empresaID, rol);
-        this._unsubInd5.next(' ');
-      })
+          console.log(empresaSelect);
+          for (let i = 0; i < data.length; i++) {
+            console.log(data[i].nombre);
+            if (data[i].nombre == empresaSelect) {
+              empresaID = data[i].id;
+            }
+          }
+          console.log(empresaID);
+          this.empleadoSE.createEmpleado(dni, empresaID, rol);
+          this._unsubInd5.next(' ');
+        });
     }
   }
 
-  validarDNI(dni, empresa){
-    let dniExp=/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/
-    if(!dniExp.test(this.dni)){
-      this.dniValido="false";
-      alert("El DNI indicado no es correcto")
-    }else{
-      let letrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
-      let numDNI = this.dni.slice(0,8);
+  validarDNI(dni, empresa) {
+    let dniExp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/;
+    if (!dniExp.test(this.dni)) {
+      this.dniValido = 'false';
+      alert('El DNI indicado no es correcto');
+    } else {
+      let letrasDNI = 'TRWAGMYFPDXBNJZSQVHLCKE';
+      let numDNI = this.dni.slice(0, 8);
       let letraDNI = this.dni.slice(8);
       let resto = parseInt(numDNI) % 23;
       let letraCalculada = letrasDNI.charAt(resto);
 
-      if(letraDNI.toUpperCase() == letraCalculada){
-        this.dniValido="true";
-        this.registrar(dni,empresa)
-      }else{
-        this.dniValido="false";
-        alert("El DNI indicado no es correcto")
+      if (letraDNI.toUpperCase() == letraCalculada) {
+        this.dniValido = 'true';
+        this.registrar(dni, empresa);
+      } else {
+        this.dniValido = 'false';
+        alert('El DNI indicado no es correcto');
       }
     }
   }
 
-  fichar(){
-    this.router.navigate(['horas/'+ this.id]);
+  fichar() {
+    this.router.navigate(['horas/' + this.id]);
   }
-
 
   ngOnInit(): void {
     this.id = this.rutaActiva.snapshot.params['id'];
@@ -666,22 +712,25 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
     this.imprimirRegistros(this.id);
 
     this.empleadoSE.getEmpleadoAll();
-    this.empleadoSE.getEmpleadosResult().pipe(takeUntil(this._unsubInd5)).subscribe((data)=>{
-      this.empleados = [];
-      if (data == null) {
-        return;
-      }
-      for (let i = 0; i < data.length; i++) {
-        if(data[i].empresas==null){
+    this.empleadoSE
+      .getEmpleadosResult()
+      .pipe(takeUntil(this._unsubInd5))
+      .subscribe((data) => {
+        this.empleados = [];
+        if (data == null) {
           return;
         }
-          if(data[i].empresas.nombre==this.empresa){
-            this.empleados.push(data[i].nombre+" "+data[i].apellidos)
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].empresas == null) {
+            return;
           }
-      }
-      this.empleado= this.empleados[0]
-      this.setID(this.empleado)
-    })
+          if (data[i].empresas.nombre == this.empresa) {
+            this.empleados.push(data[i].nombre + ' ' + data[i].apellidos);
+          }
+        }
+        this.empleado = this.empleados[0];
+        this.setID(this.empleado);
+      });
 
     //Busca los datos del empleado conectado para ponerlos en el PDF
     this.empleadoSE.getEmpleadoUnico(this.id).subscribe((data) => {
@@ -711,7 +760,7 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
             }
           }
         }
-        this.empresaSelect=this.empresas[0];
+        this.empresaSelect = this.empresas[0];
         this._unsubInd4.next(' ');
       });
 
@@ -720,6 +769,5 @@ export class TablaHorasComponent extends UnsubscribesDestroy implements OnInit {
 
     //Deshabilita automaticamente los findes
     this.setFindes();
-
   }
 }

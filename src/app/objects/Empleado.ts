@@ -20,7 +20,7 @@ export class Empleado extends BaseObject implements Empleado {
     empleado.apellidos = data.apellidos;
     empleado.correo = data.correo;
     empleado.dni = data.dni;
-    empleado.roles=data.roles[0];
+    empleado.roles = data.roles[0];
     empleado.empresas = data.empresas;
     return empleado;
   }

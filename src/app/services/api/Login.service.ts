@@ -22,19 +22,24 @@ export class LoginService {
         username: body.username,
         password: body.password,
       })
-      .subscribe((response: any) => {
-        if (localStorage.getItem('token')) {
-          localStorage.removeItem('token');
-          localStorage.setItem('token', response.token);
-        } else {
-          localStorage.setItem('token', response.token);
+      .subscribe(
+        (response: any) => {
+          if (localStorage.getItem('token')) {
+            localStorage.removeItem('token');
+            localStorage.setItem('token', response.token);
+          } else {
+            localStorage.setItem('token', response.token);
+          }
+          let tokenCod: any = localStorage.getItem('token');
+          let tokenDe: any = jwt_decode(tokenCod);
+          let username = tokenDe.username;
+          this.empleadoSE.getEmpleadoMes(username, tokenCod);
+        },
+        (error) => {
+          alert(
+            'Correo o contraseña incorrecto, intentalo de nuevo o recupera la contraseña'
+          );
         }
-        let tokenCod: any = localStorage.getItem('token');
-        let tokenDe: any = jwt_decode(tokenCod);
-        let username = tokenDe.username;
-        this.empleadoSE.getEmpleadoMes(username, tokenCod);
-      },error=>{
-        alert("Correo o contraseña incorrecto, intentalo de nuevo o recupera la contraseña")
-      });
+      );
   }
 }

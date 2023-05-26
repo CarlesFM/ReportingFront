@@ -1,12 +1,12 @@
 input[disabled=""] {
-    background-color: rgb(226, 226, 226);
-  }
+  background-color: rgb(226, 226, 226);
+}
 
-  .centrado{
-    margin-top: 10%;
-  }
+.centrado {
+  margin-top: 10%;
+}
 
-.width{
+.width {
   width: 10%;
   position: relative;
   top: -3.1rem;

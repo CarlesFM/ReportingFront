@@ -3,13 +3,6 @@ import { Fecha } from './Fecha';
 import { Mes } from './Mes';
 
 export interface Registro {
-  // id?: number,
-  // entrada: Fecha,
-  // salida: Fecha
-  // almuerzoEntrada: Fecha
-  // almuerzoSalida: Fecha
-  // comidaEntrada: Fecha
-  // comidaSalida: Fecha
   id?: number;
   entrada: string;
   salida: string;
@@ -26,14 +19,7 @@ export class Registro extends BaseObject implements Registro {
   }
   static convertFrontObject(data: any) {
     let registro = new Registro();
-    // registro.id=data.id;
-    // registro.entrada=data.entrada;
-    // registro.salida=data.salida;
-    // registro.almuerzoEntrada=data.almuerzo_entrada;
-    // registro.almuerzoSalida=data.almuerzo_salida;
-    // registro.comidaEntrada=data.comida_entrada;
-    // registro.comidaSalida=data.comida_salida;
-    // registro.mes=data.mes;
+
     registro.id = data.id;
     registro.entrada = data.entrada;
     registro.salida = data.salida;

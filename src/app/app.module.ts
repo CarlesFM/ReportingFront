@@ -15,7 +15,7 @@ import { UsuarioHorasComponent } from './usuario-horas/usuario-horas.component';
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'reporting/:id', component: TablaHorasComponent },
-  { path: 'horas/:id',component:UsuarioHorasComponent },
+  { path: 'horas/:id', component: UsuarioHorasComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'recuperar', component: RecuperacionPwdComponent },
 ];

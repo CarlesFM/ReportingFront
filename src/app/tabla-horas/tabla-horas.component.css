@@ -1,4 +1,3 @@
-
 #htmlData {
   margin-top: 500px;
   position: fixed;
@@ -7,50 +6,51 @@ input[disabled=""] {
   background-color: rgb(179, 177, 177);
 }
 
-.true{
+.true {
   border-color: #3ca9e2 !important;
 }
 
-.false{
+.false {
   color: #cc1e2b !important;
   border-color: #cc1e2b !important;
 }
-.width{
+.width {
   width: 92%;
 }
 
-#largo{
+#largo {
   height: 35% !important;
 }
-#largoFestivo{
+#largoFestivo {
   height: 44% !important;
 }
-#height{
+#height {
   height: 33% !important;
 }
 
-.centrado{
+.centrado {
   margin-left: 50px;
 }
 
-table,tr,th,td{
-  border:1px solid black;
+table,
+tr,
+th,
+td {
+  border: 1px solid black;
   text-align: center;
 }
-.tabla{
+.tabla {
   width: 33%;
 }
-@media (max-width:1580px){
-
+@media (max-width: 1580px) {
 }
 
-@media (max-width:1457px){
-  *{
+@media (max-width: 1457px) {
+  * {
     font-size: 18px;
   }
-  h2{
-    font-weight:500;
+  h2 {
+    font-weight: 500;
     font-size: 25px;
   }
-
 }

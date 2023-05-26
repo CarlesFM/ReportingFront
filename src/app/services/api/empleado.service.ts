@@ -11,76 +11,92 @@ import { Empresa } from 'src/app/objects/Empresa';
 @Injectable({
   providedIn: 'root',
 })
-export class EmpleadoService  extends UnsubscribesDestroy {
-  constructor(private http: HttpClient, private router: Router,private empresaSE:EmpresaService) {
+export class EmpleadoService extends UnsubscribesDestroy {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private empresaSE: EmpresaService
+  ) {
     super();
   }
 
   private empleados = new BehaviorSubject<Array<Empleado> | null>(null);
 
-  createEmpleado(dni,empresa,rol) {
-
+  createEmpleado(dni, empresa, rol) {
     this.getEmpleadoAll();
-    this.getEmpleadosResult().pipe(takeUntil(this._unsubInd2)).subscribe(data=>{
-      if(data==null){
-        return;
-      }
-      let existeDNI:boolean=false;
-      let msn:boolean=false;
-      for (let i = 0; i < data.length; i++) {
-          if(data[i].dni==dni){
-            existeDNI=true;
-            msn=true;
-          }
-      }
-      if(!existeDNI){
-        this.http
-        .post(environment.urlApi + 'employee', {
-          dni: dni,
-          empresas: empresa,
-          roles: [rol],
-          password: ""
-        })
-        .subscribe((data) => {
-          console.log(data);
-        });
-      }else if(msn){
-        alert("El DNI introducido ya esta registrado")
-      }
-    })
-  }
-
-  registrarEmpleado(nombre, apellidos, correo, pwd, dni){
-    this.getEmpleadoAll();
-    this.getEmpleadosResult().pipe(takeUntil(this._unsubInd3))
-    .subscribe((data) => {
-      let id:any="";
-      if (data == null) {
-        return;
-      }
-      for (let i = 0; i < data.length; i++) {
-        if(data[i].dni == dni){
-          if(data[i].apellidos==null && data[i].correo==null && data[i].nombre==null){
-            id = data[i].id
+    this.getEmpleadosResult()
+      .pipe(takeUntil(this._unsubInd2))
+      .subscribe((data) => {
+        if (data == null) {
+          return;
+        }
+        let existeDNI: boolean = false;
+        let msn: boolean = false;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].dni == dni) {
+            existeDNI = true;
+            msn = true;
           }
         }
-      }
-      if(id!=""){
-        console.log(data)
-      this.http.put(environment.urlApi+'api/empleado/'+id,{
-        nombre: nombre,
-        apellidos: apellidos,
-        correo: correo,
-        password: pwd}).subscribe((data)=>{
-          this.router.navigate(['']);
-        },error=>{
-          this.router.navigate(['']);
-        });
-      }else{
-        alert("El DNI indicado no esta registrado en la base de datos")
-      }
-      this._unsubInd3.next(' ');
-    })
+        if (!existeDNI) {
+          this.http
+            .post(environment.urlApi + 'employee', {
+              dni: dni,
+              empresas: empresa,
+              roles: [rol],
+              password: '',
+            })
+            .subscribe((data) => {
+              console.log(data);
+            });
+        } else if (msn) {
+          alert('El DNI introducido ya esta registrado');
+        }
+      });
+  }
+
+  registrarEmpleado(nombre, apellidos, correo, pwd, dni) {
+    this.getEmpleadoAll();
+    this.getEmpleadosResult()
+      .pipe(takeUntil(this._unsubInd3))
+      .subscribe((data) => {
+        let id: any = '';
+        if (data == null) {
+          return;
+        }
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].dni == dni) {
+            if (
+              data[i].apellidos == null &&
+              data[i].correo == null &&
+              data[i].nombre == null
+            ) {
+              id = data[i].id;
+            }
+          }
+        }
+        if (id != '') {
+          console.log(data);
+          this.http
+            .put(environment.urlApi + 'api/empleado/' + id, {
+              nombre: nombre,
+              apellidos: apellidos,
+              correo: correo,
+              password: pwd,
+            })
+            .subscribe(
+              (data) => {
+                this.router.navigate(['']);
+              },
+              (error) => {
+                this.router.navigate(['']);
+              }
+            );
+        } else {
+          alert('El DNI indicado no esta registrado en la base de datos');
+        }
+        this._unsubInd3.next(' ');
+      });
   }
 
   getEmpleadoMes(username: any, token: any) {
@@ -90,11 +106,11 @@ export class EmpleadoService  extends UnsubscribesDestroy {
       .get(environment.urlApi + 'api/empleado/' + username, { headers })
       .subscribe((response: any) => {
         let id = response.id;
-        console.log(response.roles[0])
-        if(response.roles[0]=="ROLE_ADMIN"){        
+        console.log(response.roles[0]);
+        if (response.roles[0] == 'ROLE_ADMIN') {
           this.router.navigate(['reporting/' + id]);
-        }else{
-          this.router.navigate(['horas/'+ id]);
+        } else {
+          this.router.navigate(['horas/' + id]);
         }
       });
   }

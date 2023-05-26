@@ -150,7 +150,10 @@
         </div>
       </div>
     </div>
-    <div [id]="largo" class="bg-white rounded largo largoFestivos p-2 col-2 ms-5">
+    <div
+      [id]="largo"
+      class="bg-white rounded largo largoFestivos p-2 col-2 ms-5"
+    >
       <h2 class="text-center">Funciones</h2>
 
       <button (click)="fichar()" class="col btn btn-primary mt-3 mb-2">
@@ -161,7 +164,9 @@
         Mostrar/Ocultar Festivos
       </button>
       <br />
-      <button (click)="pdf()" class="col btn btn-primary mb-5">Descargar PDF</button>
+      <button (click)="pdf()" class="col btn btn-primary mb-5">
+        Descargar PDF
+      </button>
 
       <h2 class="text-center">Registrar Empleado</h2>
       <form id="login-form" action="" #form="ngForm">
@@ -174,11 +179,7 @@
           [class]="dniValido"
           placeholder="DNI"
         />
-        <select
-          class="form-select mb-2"
-          name="rol"
-          [(ngModel)]="rolSelect"
-        >
+        <select class="form-select mb-2" name="rol" [(ngModel)]="rolSelect">
           <option *ngFor="let rol of roles">{{ rol }}</option>
         </select>
         <select
@@ -202,7 +203,6 @@
         />
       </form>
     </div>
-  
   </div>
 </div>
 

@@ -117,14 +117,13 @@ export class RegistroService {
     comidaSalida,
     dia
   ) {
+    entrada = entrada == '' ? null : entrada;
+    salida = salida == '' ? null : salida;
+    almuerzoEntrada = almuerzoEntrada == '' ? null : almuerzoEntrada;
+    almuerzoSalida = almuerzoSalida == '' ? null : almuerzoSalida;
+    comidaEntrada = comidaEntrada == '' ? null : comidaEntrada;
+    comidaSalida = comidaSalida == '' ? null : comidaSalida;
 
-    entrada = entrada == "" ?null:entrada;
-    salida = salida==""?null:salida;
-    almuerzoEntrada=almuerzoEntrada==""?null:almuerzoEntrada;
-    almuerzoSalida=almuerzoSalida==""?null:almuerzoSalida;
-    comidaEntrada=comidaEntrada==""?null:comidaEntrada;
-    comidaSalida=comidaSalida==""?null:comidaSalida;
-    
     const token = localStorage.getItem('token');
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

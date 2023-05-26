@@ -63,7 +63,7 @@ export class UsuarioHorasComponent
   dia: number = this.fechaActual.getDate();
   mes: string = this.mesesES[this.fechaActual.getMonth()];
   anyo: number = this.fechaActual.getFullYear();
-  diaSemana: string = this.diasSemana[this.fechaActual.getDay()]
+  diaSemana: string = this.diasSemana[this.fechaActual.getDay()];
   dias: number[] = [];
 
   horaEntrada: string = '';
@@ -73,14 +73,14 @@ export class UsuarioHorasComponent
   horaComidaSalida: string = '';
   horaSalida: string = '';
 
-  mostrarBoton: boolean = false
+  mostrarBoton: boolean = false;
 
   constructor(
     private rutaActiva: ActivatedRoute,
     private mesSE: MesService,
     private registroSE: RegistroService,
     private empleadoSE: EmpleadoService,
-    private router: Router,
+    private router: Router
   ) {
     super();
   }
@@ -129,51 +129,87 @@ export class UsuarioHorasComponent
 
   setEntrada() {
     this.fechaActual = new Date();
-    let h = String(this.fechaActual.getHours()).length<2 ? "0"+this.fechaActual.getHours():this.fechaActual.getHours();
-    let m = String(this.fechaActual.getMinutes()).length<2 ? "0"+this.fechaActual.getMinutes():this.fechaActual.getMinutes();
+    let h =
+      String(this.fechaActual.getHours()).length < 2
+        ? '0' + this.fechaActual.getHours()
+        : this.fechaActual.getHours();
+    let m =
+      String(this.fechaActual.getMinutes()).length < 2
+        ? '0' + this.fechaActual.getMinutes()
+        : this.fechaActual.getMinutes();
     let hora = h + ':' + m;
     this.horaEntrada = hora;
-    this.guardar()
+    this.guardar();
   }
   setAlmuerzoEntrada() {
     this.fechaActual = new Date();
-    let h = String(this.fechaActual.getHours()).length<2 ? "0"+this.fechaActual.getHours():this.fechaActual.getHours();
-    let m = String(this.fechaActual.getMinutes()).length<2 ? "0"+this.fechaActual.getMinutes():this.fechaActual.getMinutes();
+    let h =
+      String(this.fechaActual.getHours()).length < 2
+        ? '0' + this.fechaActual.getHours()
+        : this.fechaActual.getHours();
+    let m =
+      String(this.fechaActual.getMinutes()).length < 2
+        ? '0' + this.fechaActual.getMinutes()
+        : this.fechaActual.getMinutes();
     let hora = h + ':' + m;
     this.horaAlmuerzoEntrada = hora;
-    this.guardar()
+    this.guardar();
   }
   setAlmuerzoSalida() {
     this.fechaActual = new Date();
-    let h = String(this.fechaActual.getHours()).length<2 ? "0"+this.fechaActual.getHours():this.fechaActual.getHours();
-    let m = String(this.fechaActual.getMinutes()).length<2 ? "0"+this.fechaActual.getMinutes():this.fechaActual.getMinutes();
+    let h =
+      String(this.fechaActual.getHours()).length < 2
+        ? '0' + this.fechaActual.getHours()
+        : this.fechaActual.getHours();
+    let m =
+      String(this.fechaActual.getMinutes()).length < 2
+        ? '0' + this.fechaActual.getMinutes()
+        : this.fechaActual.getMinutes();
     let hora = h + ':' + m;
     this.horaAlmuerzoSalida = hora;
-    this.guardar()
+    this.guardar();
   }
   setComidaEntrada() {
     this.fechaActual = new Date();
-    let h = String(this.fechaActual.getHours()).length<2 ? "0"+this.fechaActual.getHours():this.fechaActual.getHours();
-    let m = String(this.fechaActual.getMinutes()).length<2 ? "0"+this.fechaActual.getMinutes():this.fechaActual.getMinutes();
+    let h =
+      String(this.fechaActual.getHours()).length < 2
+        ? '0' + this.fechaActual.getHours()
+        : this.fechaActual.getHours();
+    let m =
+      String(this.fechaActual.getMinutes()).length < 2
+        ? '0' + this.fechaActual.getMinutes()
+        : this.fechaActual.getMinutes();
     let hora = h + ':' + m;
     this.horaComidaEntrada = hora;
-    this.guardar()
+    this.guardar();
   }
   setComidaSalida() {
     this.fechaActual = new Date();
-    let h = String(this.fechaActual.getHours()).length<2 ? "0"+this.fechaActual.getHours():this.fechaActual.getHours();
-    let m = String(this.fechaActual.getMinutes()).length<2 ? "0"+this.fechaActual.getMinutes():this.fechaActual.getMinutes();
+    let h =
+      String(this.fechaActual.getHours()).length < 2
+        ? '0' + this.fechaActual.getHours()
+        : this.fechaActual.getHours();
+    let m =
+      String(this.fechaActual.getMinutes()).length < 2
+        ? '0' + this.fechaActual.getMinutes()
+        : this.fechaActual.getMinutes();
     let hora = h + ':' + m;
     this.horaComidaSalida = hora;
-    this.guardar()
+    this.guardar();
   }
   setSalida() {
     this.fechaActual = new Date();
-    let h = String(this.fechaActual.getHours()).length<2 ? "0"+this.fechaActual.getHours():this.fechaActual.getHours();
-    let m = String(this.fechaActual.getMinutes()).length<2 ? "0"+this.fechaActual.getMinutes():this.fechaActual.getMinutes();
+    let h =
+      String(this.fechaActual.getHours()).length < 2
+        ? '0' + this.fechaActual.getHours()
+        : this.fechaActual.getHours();
+    let m =
+      String(this.fechaActual.getMinutes()).length < 2
+        ? '0' + this.fechaActual.getMinutes()
+        : this.fechaActual.getMinutes();
     let hora = h + ':' + m;
     this.horaSalida = hora;
-    this.guardar()
+    this.guardar();
   }
 
   crearMes() {
@@ -235,7 +271,7 @@ export class UsuarioHorasComponent
     this.imprimirRegistros(this.id);
   }
 
-  setDiaTabla(){
+  setDiaTabla() {
     this.horaEntrada = '';
     this.horaAlmuerzoEntrada = '';
     this.horaAlmuerzoSalida = '';
@@ -245,10 +281,12 @@ export class UsuarioHorasComponent
     this.fechaSelected = new Date(
       '' +
         (this.mesesES.indexOf(this.mes) + 1) +
-        ' '+this.dia+','+
+        ' ' +
+        this.dia +
+        ',' +
         this.fechaActual.getFullYear()
     );
-    this.diaSemana=this.diasSemana[this.fechaSelected.getDay()]
+    this.diaSemana = this.diasSemana[this.fechaSelected.getDay()];
     this.imprimirRegistros(this.id);
   }
 
@@ -390,30 +428,18 @@ export class UsuarioHorasComponent
           }
           for (let i = 0; i < value.length; i++) {
             if (value[i].dia == this.dia && mesID == value[i].mes) {
-              let entrada =
-                this.horaEntrada == ""
-                  ? null
-                  : this.horaEntrada;
-              let salida =
-                this.horaSalida == ""
-                  ? null
-                  : this.horaSalida;
+              let entrada = this.horaEntrada == '' ? null : this.horaEntrada;
+              let salida = this.horaSalida == '' ? null : this.horaSalida;
               let almuerzoEntrada =
-                this.horaAlmuerzoEntrada == ""
+                this.horaAlmuerzoEntrada == ''
                   ? null
                   : this.horaAlmuerzoEntrada;
               let almuerzoSalida =
-                this.horaAlmuerzoSalida == ""
-                  ? null
-                  : this.horaAlmuerzoSalida;
+                this.horaAlmuerzoSalida == '' ? null : this.horaAlmuerzoSalida;
               let comidaEntrada =
-                this.horaComidaEntrada == ""
-                  ? null
-                  : this.horaComidaEntrada;
+                this.horaComidaEntrada == '' ? null : this.horaComidaEntrada;
               let comidaSalida =
-                this.horaComidaSalida == ""
-                  ? null
-                  : this.horaComidaSalida;
+                this.horaComidaSalida == '' ? null : this.horaComidaSalida;
               let dia = this.dia;
 
               registroExiste = true;
@@ -432,30 +458,16 @@ export class UsuarioHorasComponent
           }
           if (!registroExiste) {
             let mes = data[0].id;
-            let entrada =
-              this.horaEntrada == ""
-                ? null
-                : this.horaEntrada;
-            let salida =
-              this.horaSalida == ""
-                ? null
-                : this.horaSalida;
+            let entrada = this.horaEntrada == '' ? null : this.horaEntrada;
+            let salida = this.horaSalida == '' ? null : this.horaSalida;
             let almuerzoEntrada =
-              this.horaAlmuerzoEntrada == ""
-                ? null
-                : this.horaAlmuerzoEntrada;
+              this.horaAlmuerzoEntrada == '' ? null : this.horaAlmuerzoEntrada;
             let almuerzoSalida =
-              this.horaAlmuerzoSalida == ""
-                ? null
-                : this.horaAlmuerzoSalida;
+              this.horaAlmuerzoSalida == '' ? null : this.horaAlmuerzoSalida;
             let comidaEntrada =
-              this.horaComidaEntrada == ""
-                ? null
-                : this.horaComidaEntrada;
+              this.horaComidaEntrada == '' ? null : this.horaComidaEntrada;
             let comidaSalida =
-              this.horaComidaSalida == ""
-                ? null
-                : this.horaComidaSalida;
+              this.horaComidaSalida == '' ? null : this.horaComidaSalida;
             let dia = this.dia;
 
             this.registroSE.setRegistros(
@@ -475,27 +487,26 @@ export class UsuarioHorasComponent
     // this.imprimirRegistros(this.id);
   }
 
-  mostrarOcultarBoton(){
-  this.empleadoSE.getEmpleadoUnico(this.id).subscribe(data=>{
-    console.log(data)
-    console.log(data.roles[0])
-    if(data.roles[0]=="ROLE_ADMIN"){        
-      this.mostrarBoton=true
-    }else{
-      this.mostrarBoton=false;
-    }
-  })
+  mostrarOcultarBoton() {
+    this.empleadoSE.getEmpleadoUnico(this.id).subscribe((data) => {
+      console.log(data);
+      console.log(data.roles[0]);
+      if (data.roles[0] == 'ROLE_ADMIN') {
+        this.mostrarBoton = true;
+      } else {
+        this.mostrarBoton = false;
+      }
+    });
   }
-  volver(){
+  volver() {
     this.router.navigate(['reporting/' + this.id]);
   }
-  
 
   ngOnInit(): void {
     this.id = this.rutaActiva.snapshot.params['id'];
     this.setDias();
     this.crearMes();
     this.imprimirRegistros(this.id);
-    this.mostrarOcultarBoton()
+    this.mostrarOcultarBoton();
   }
 }

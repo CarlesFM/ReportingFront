@@ -15,7 +15,8 @@
 #registro {
   margin-top: 10px;
 }
-input,select {
+input,
+select {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -40,11 +41,11 @@ select {
   display: inline-block;
   background: none;
 }
-.true{
+.true {
   border-color: #3ca9e2 !important;
 }
 
-.false{
+.false {
   color: #cc1e2b !important;
   border-color: #cc1e2b !important;
 }
